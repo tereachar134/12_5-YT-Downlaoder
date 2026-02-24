@@ -34,7 +34,7 @@ Just double-click the `run.bat` file. It will:
 1. Verify Python and pip.
 2. Install/Upgrade `flask` and `yt-dlp`.
 3. Check for FFmpeg.
-4. Launch the web interface at `http://localhost:5050`.
+4. Launch the web interface (prefers `http://localhost:5050`; if busy, auto-falls back to next open port).
 
 ### Manual Setup (Linux/Mac/Manual Windows)
 
@@ -56,12 +56,39 @@ Just double-click the `run.bat` file. It will:
 
 ## 🛠 Usage Instructions
 
-1.  **Enter URL**: Paste a YouTube/Playlist link into the URL box.
-2.  **Fetch (for Playlists)**: Click "Fetch Playlist" to see all videos in the list.
-3.  **Choose Quality**: Select your desired format (1080p, 720p, or MP3).
-4.  **Set Directory**: Choose where to save your files (defaults to `Downloads/YT-Downloader`).
-5.  **Start Download**: Click "Download Video" or "Download Audio".
-6.  **Monitor**: Watch the live log for progress and errors.
+After starting the app, open the URL shown in terminal output (usually `http://localhost:5050`; if that port is busy it will auto-use the next available port).
+
+### 1) Single Download (Video/Audio)
+1. Open the **Single Download** panel.
+2. Paste a supported URL in the **URL** field.
+3. Set your **Save Folder**.
+4. Choose either:
+   - **Video**: select quality (Best/1080p/720p/480p), or
+   - **Audio**: select format + bitrate.
+5. Click **Download Video** or **Download Audio**.
+6. Track progress in **Live Terminal Output**.
+
+### 2) Playlist Download
+1. Open the **Playlist Manager** panel.
+2. Paste the playlist URL and click **Load**.
+3. Choose mode (**Video** or **Audio**) and quality.
+4. Download by scope:
+   - **Single** item,
+   - **Range** (From → To), or
+   - **Download All**.
+5. Watch statuses and logs to monitor queued/downloading/done/failed items.
+
+### 3) Convert Local File
+1. Open the **Convert File** panel.
+2. Enter the local media file path.
+3. Choose output format and bitrate.
+4. Click **Convert to Audio**.
+
+### 4) Settings & Maintenance
+Use the **Settings** panel to:
+- check tool versions/status (`yt-dlp`, `ffmpeg`, Python),
+- update `yt-dlp`,
+- review troubleshooting guidance for restricted videos.
 
 ### Troubleshooting "403 Forbidden"
 If you encounter access errors, use the **Settings** tab to:
