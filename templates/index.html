@@ -11,22 +11,22 @@
    DESIGN TOKENS
 ═══════════════════════════════════════════════════ */
 :root {
-  --bg:        #05060a;
-  --bg2:       #080a10;
-  --surface:   #0c0f18;
-  --card:      #101420;
-  --card2:     #141826;
-  --border:    #1a2035;
-  --border2:   #243050;
-  --border3:   #2e3c60;
-  --accent:    #00e5b0;
-  --accent-dim:#00e5b022;
-  --accent-glow: 0 0 24px rgba(0,229,176,.18);
+  --bg:        #0f172a;
+  --bg2:       #111b31;
+  --surface:   #17223b;
+  --card:      #1b2845;
+  --card2:     #223154;
+  --border:    #2b3d63;
+  --border2:   #36507f;
+  --border3:   #4a6aa6;
+  --accent:    #4f8cff;
+  --accent-dim:#4f8cff22;
+  --accent-glow: 0 0 24px rgba(79,140,255,.22);
   --accent2:   #7c6eff;
-  --accent3:   #ff4f7b;
-  --text:      #dce8ff;
-  --text2:     #6b7aa0;
-  --text3:     #343d5a;
+  --accent3:   #f97392;
+  --text:      #e6edff;
+  --text2:     #9aabd2;
+  --text3:     #5c709b;
   --green:     #22e89c;
   --yellow:    #f5b731;
   --red:       #ff3d5f;
@@ -75,16 +75,16 @@ body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(0,229,176,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,229,176,.025) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(79,140,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,140,255,.03) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 /* Ambient glow orbs */
 body::after {
   content: '';
   position: fixed; top: -30vh; left: -20vw; width: 60vw; height: 60vh;
-  background: radial-gradient(ellipse, rgba(0,229,176,.04) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(79,140,255,.08) 0%, transparent 68%);
   z-index: 0; pointer-events: none;
 }
 
@@ -105,8 +105,8 @@ a { color: var(--accent); text-decoration: none; }
 ═══════════════════════════════════════════════════ */
 .topbar {
   display: flex; align-items: center; gap: 24px;
-  padding: 0 24px; height: 56px;
-  background: rgba(8,10,16,.9);
+  padding: 0 28px; height: 64px;
+  background: rgba(17,27,49,.88);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 100;
@@ -115,13 +115,13 @@ a { color: var(--accent); text-decoration: none; }
 .topbar-logo {
   display: flex; align-items: center; gap: 0;
   font-family: 'Syne', sans-serif;
-  font-size: 15px; font-weight: 800; letter-spacing: -.01em;
+  font-size: 16px; font-weight: 700; letter-spacing: .01em;
 }
 .topbar-logo .brand-main { color: var(--text); }
 .topbar-logo .brand-dot { color: var(--accent); margin: 0 1px; }
 .topbar-logo .brand-tag {
   margin-left: 12px; padding: 2px 8px; border-radius: 4px;
-  background: var(--accent-dim); border: 1px solid rgba(0,229,176,.2);
+  background: var(--accent-dim); border: 1px solid rgba(79,140,255,.32);
   color: var(--accent); font-size: 10px; font-family: 'JetBrains Mono', monospace;
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
 }
@@ -159,11 +159,11 @@ a { color: var(--accent); text-decoration: none; }
 /* ═══════════════════════════════════════════════════
    LAYOUT
 ═══════════════════════════════════════════════════ */
-.main { display: flex; height: calc(100vh - 56px); overflow: hidden; }
+.main { display: flex; height: calc(100vh - 64px); overflow: hidden; }
 
 /* ── Sidebar ── */
 .sidebar {
-  width: 210px; flex-shrink: 0;
+  width: 236px; flex-shrink: 0;
   background: var(--bg2); border-right: 1px solid var(--border);
   display: flex; flex-direction: column; padding: 16px 0;
   overflow-y: auto;
@@ -226,7 +226,7 @@ a { color: var(--accent); text-decoration: none; }
 .panel.active { display: flex; }
 
 .panel-header {
-  padding: 20px 28px 0;
+  padding: 24px 32px 0;
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -234,11 +234,11 @@ a { color: var(--accent); text-decoration: none; }
 
 .panel-title {
   font-family: 'Syne', sans-serif; font-size: 22px;
-  font-weight: 800; letter-spacing: -.02em; color: var(--text);
+  font-weight: 700; letter-spacing: -.01em; color: var(--text);
   margin-bottom: 3px;
 }
 .panel-title span { color: var(--accent); }
-.panel-sub { color: var(--text2); font-size: 12px; margin-bottom: 14px; font-weight: 400; }
+.panel-sub { color: var(--text2); font-size: 13px; margin-bottom: 16px; font-weight: 400; max-width: 62ch; }
 
 .panel-tabs { display: flex; gap: 0; }
 .ptab {
@@ -250,7 +250,7 @@ a { color: var(--accent); text-decoration: none; }
 .ptab:hover { color: var(--text); }
 .ptab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-.panel-body { flex: 1; overflow-y: auto; padding: 22px 28px 80px; }
+.panel-body { flex: 1; overflow-y: auto; padding: 24px 32px 84px; }
 
 /* ═══════════════════════════════════════════════════
    FORM CONTROLS
@@ -266,7 +266,7 @@ a { color: var(--accent); text-decoration: none; }
 .field-input {
   width: 100%; padding: 9px 12px;
   background: var(--card); border: 1px solid var(--border2);
-  border-radius: var(--radius); color: var(--text);
+  border-radius: 10px; color: var(--text);
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px; outline: none; transition: border-color .15s, box-shadow .15s;
   -webkit-appearance: none;
@@ -306,11 +306,11 @@ select.field-input option { background: var(--surface); }
 .btn:hover::before { opacity: 1; }
 
 .btn-primary {
-  background: linear-gradient(135deg, #00e5b0 0%, #00aeff 100%);
-  color: #020d0c; font-weight: 700;
-  box-shadow: 0 4px 20px rgba(0,229,176,.25);
+  background: linear-gradient(135deg, #4f8cff 0%, #6f7dff 100%);
+  color: #f7faff; font-weight: 700;
+  box-shadow: 0 10px 24px rgba(79,140,255,.3);
 }
-.btn-primary:hover { box-shadow: 0 6px 28px rgba(0,229,176,.38); transform: translateY(-1px); }
+.btn-primary:hover { box-shadow: 0 12px 28px rgba(79,140,255,.4); transform: translateY(-1px); }
 
 .btn-green  {
   background: rgba(34,232,156,.08); color: var(--green);
@@ -365,7 +365,7 @@ select.field-input option { background: var(--surface); }
 
 .dl-card {
   background: var(--card); border: 1px solid var(--border2);
-  border-radius: var(--radius-lg); padding: 20px;
+  border-radius: 14px; padding: 22px;
   position: relative; overflow: hidden; transition: border-color .2s, box-shadow .2s;
 }
 .dl-card::before {
@@ -378,8 +378,8 @@ select.field-input option { background: var(--surface); }
 }
 .dl-card:hover::after { opacity: 1; }
 
-.dl-card-video::before { background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%); }
-.dl-card-audio::before { background: linear-gradient(90deg, var(--green) 0%, var(--accent) 100%); }
+.dl-card-video::before { background: linear-gradient(90deg, var(--accent) 0%, #90b5ff 100%); }
+.dl-card-audio::before { background: linear-gradient(90deg, #2dd4bf 0%, var(--accent) 100%); }
 
 .dl-card:hover { border-color: var(--border3); box-shadow: var(--shadow-sm); }
 
@@ -394,8 +394,11 @@ select.field-input option { background: var(--surface); }
    SETTINGS STRIP
 ═══════════════════════════════════════════════════ */
 .settings-strip {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 16px; margin: 14px 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.005)), var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 18px;
+  margin: 14px 0;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -403,7 +406,7 @@ select.field-input option { background: var(--surface); }
 ═══════════════════════════════════════════════════ */
 .log-wrap {
   background: var(--log-bg); border: 1px solid var(--border2);
-  border-radius: var(--radius-lg); overflow: hidden; flex-shrink: 0;
+  border-radius: 14px; overflow: hidden; flex-shrink: 0;
   box-shadow: 0 2px 20px rgba(0,0,0,.5);
 }
 
@@ -630,7 +633,7 @@ select.field-input option { background: var(--surface); }
 <header class="topbar">
   <div class="topbar-logo">
     <span class="brand-main">12</span><span class="brand-dot">_</span><span class="brand-main">5</span>
-    <span class="brand-tag">YT-DL v3</span>
+    <span class="brand-tag">PRO WORKFLOW</span>
   </div>
 
   <div class="topbar-divider"></div>
@@ -693,7 +696,7 @@ select.field-input option { background: var(--surface); }
     <div class="panel active" id="panel-single">
       <div class="panel-header">
         <div class="panel-title"><span>Single</span> Download</div>
-        <div class="panel-sub">Download any video or audio from YouTube and 1000+ supported sites</div>
+        <div class="panel-sub">Download videos or audio with a cleaner workflow and production-ready defaults</div>
         <div class="panel-tabs">
           <div class="ptab active" onclick="showSubTab('single','video',this)">🎬 Video</div>
           <div class="ptab" onclick="showSubTab('single','audio',this)">🎵 Audio</div>
@@ -818,7 +821,7 @@ select.field-input option { background: var(--surface); }
     <div class="panel" id="panel-playlist">
       <div class="panel-header">
         <div class="panel-title"><span>Playlist</span> Manager</div>
-        <div class="panel-sub">Load a playlist, then download a single video, a range, or everything at once</div>
+        <div class="panel-sub">Load a playlist and process one item, a custom range, or the full queue with better control</div>
         <div style="height:12px"></div>
       </div>
       <div class="panel-body">
@@ -979,7 +982,7 @@ select.field-input option { background: var(--surface); }
     <div class="panel" id="panel-convert">
       <div class="panel-header">
         <div class="panel-title"><span>Convert</span> File</div>
-        <div class="panel-sub">Convert any local video file to audio using FFmpeg</div>
+        <div class="panel-sub">Convert local video assets to MP3 quickly with streamlined options</div>
         <div style="height:12px"></div>
       </div>
       <div class="panel-body">

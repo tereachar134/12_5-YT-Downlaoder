@@ -1,4 +1,4 @@
-import os, sys, subprocess, threading, time, platform, json, queue
+import os, sys, subprocess, threading, time, platform, json, queue, socket
 from pathlib import Path
 from datetime import datetime
 from flask import Flask, render_template, request, Response, jsonify, stream_with_context
@@ -534,7 +534,27 @@ def api_check_tools():
     results.append({"tool":"platform","status":"ok","version":f"{platform.system()} {platform.release()}"})
     return jsonify(results=results)
 
+def _find_open_port(preferred=5050, max_tries=20):
+    """Return the first available port, starting from preferred."""
+    for port in range(preferred, preferred + max_tries):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            try:
+                sock.bind(("0.0.0.0", port))
+                return port
+            except OSError:
+                continue
+    raise RuntimeError(f"No open port found in range {preferred}-{preferred + max_tries - 1}")
+
+
 if __name__ == "__main__":
     import webbrowser
-    threading.Timer(1.2, lambda: webbrowser.open("http://localhost:5050")).start()
-    app.run(host="0.0.0.0", port=5050, debug=False, threaded=True)
+
+    preferred_port = int(os.environ.get("PORT", 5050))
+    run_port = _find_open_port(preferred_port)
+    if run_port != preferred_port:
+        print(f"[startup] Port {preferred_port} is busy, using {run_port} instead.")
+    print(f"[startup] Opening UI at http://localhost:{run_port}")
+
+    threading.Timer(1.2, lambda: webbrowser.open(f"http://localhost:{run_port}")).start()
+    app.run(host="0.0.0.0", port=run_port, debug=False, threaded=True)
