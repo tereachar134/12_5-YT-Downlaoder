@@ -34,7 +34,7 @@ Just double-click the `run.bat` file. It will:
 1. Verify Python and pip.
 2. Install/Upgrade `flask` and `yt-dlp`.
 3. Check for FFmpeg.
-4. Launch the web interface at `http://localhost:5050`.
+4. Launch the web interface (prefers `http://localhost:5050`; if busy, auto-falls back to next open port).
 
 ### Manual Setup (Linux/Mac/Manual Windows)
 
